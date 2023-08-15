@@ -1,25 +1,20 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:todo/core/utils/app_sizedbox.dart';
+import 'package:otp_text_field/otp_text_field.dart';
+import 'package:otp_text_field/style.dart';
 import 'package:todo/core/utils/common_import.dart';
 import 'package:todo/core/widgets/credentials.dart';
-import 'package:todo/core/widgets/custom_text_widget.dart';
-import 'package:todo/core/widgets/custom_textfield.dart';
 import 'package:todo/core/widgets/logo_with_name.dart';
+import 'package:todo/features/fogot_password_screen/presentation/pages/change_password.dart';
 
-import '../../../../core/utils/navigations.dart';
-import '../../../fogot_password_screen/presentation/pages/generate_otp_screen.dart';
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class VerifyOTPScreen extends StatefulWidget {
+  const VerifyOTPScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<VerifyOTPScreen> createState() => _VerifyOTPScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailTextEditingController = TextEditingController();
-  TextEditingController passwordTextEditingController = TextEditingController();
+class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
+  OtpFieldController otpController = OtpFieldController();
+
   @override
   Widget build(BuildContext context) {
     return CreditialWidget(
@@ -33,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const LogoWithNameWidget(),
             const Spacer(),
             CustomText(
-                name: ConstString.signIn,
+                name: ConstString.forgotPassword,
                 color: AppColors.whiteColor,
                 fontSize: 24,
                 fontWeight: FontWeight.w600),
@@ -46,30 +41,51 @@ class _LoginScreenState extends State<LoginScreen> {
             child: SizedBox(
               height: screenHeight / 2,
               child: Column(
+                // mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   AppSizedBox.h40,
-                  CustomTextField(
-                    controller: emailTextEditingController,
-                    hintText: "Enter Email",
-                    prefixIcon: Icon(
-                      Icons.email_outlined,
-                      color: AppColors.blackColor,
-                    ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: CustomText(
+                        name: ConstString.enterOTP,
+                        color: AppColors.blackColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  AppSizedBox.h25,
+                  OTPTextField(
+                      controller: otpController,
+                      length: 5,
+                      width: MediaQuery.of(context).size.width,
+                      textFieldAlignment: MainAxisAlignment.spaceAround,
+                      fieldWidth: 45,
+                      fieldStyle: FieldStyle.box,
+                      outlineBorderRadius: 15,
+                      style: TextStyle(
+                          color: AppColors.blackColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                      onChanged: (pin) {},
+                      onCompleted: (pin) {}),
+                  AppSizedBox.h20,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: CustomText(
+                            name: ConstString.sendAgain,
+                            color: AppColors.secondaryColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold)),
                   ),
                   AppSizedBox.h20,
-                  CustomTextField(
-                    controller: passwordTextEditingController,
-                    hintText: "Enter Password",
-                    prefixIcon: Icon(
-                      Icons.lock,
-                      color: AppColors.blackColor,
-                    ),
-                  ),
                   const Spacer(),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
-                          context, createRoute(const GenerateOTPScreeen()));
+                          context, createRoute(ChangePasswordScreen()));
                     },
                     child: Material(
                       clipBehavior: Clip.antiAlias,
@@ -86,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: screenWidth * 0.50,
                         color: AppColors.secondaryColor,
                         child: CustomText(
-                            name: ConstString.signIn,
+                            name: ConstString.verify,
                             color: AppColors.whiteColor,
                             fontSize: 14,
                             fontWeight: FontWeight.bold),
@@ -94,9 +110,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                       child: CustomText(
-                          name: ConstString.forgotPassword,
+                          name: ConstString.cancel,
                           color: AppColors.secondaryColor,
                           fontSize: 14,
                           fontWeight: FontWeight.bold)),

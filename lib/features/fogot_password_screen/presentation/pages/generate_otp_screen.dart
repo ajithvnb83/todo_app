@@ -1,25 +1,22 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:todo/core/utils/app_sizedbox.dart';
 import 'package:todo/core/utils/common_import.dart';
+import 'package:todo/core/utils/navigations.dart';
+
 import 'package:todo/core/widgets/credentials.dart';
 import 'package:todo/core/widgets/custom_text_widget.dart';
 import 'package:todo/core/widgets/custom_textfield.dart';
 import 'package:todo/core/widgets/logo_with_name.dart';
+import 'package:todo/features/fogot_password_screen/presentation/pages/verify_otp_screen.dart';
 
-import '../../../../core/utils/navigations.dart';
-import '../../../fogot_password_screen/presentation/pages/generate_otp_screen.dart';
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class GenerateOTPScreeen extends StatefulWidget {
+  const GenerateOTPScreeen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<GenerateOTPScreeen> createState() => _GenerateOTPScreeenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _GenerateOTPScreeenState extends State<GenerateOTPScreeen> {
   TextEditingController emailTextEditingController = TextEditingController();
-  TextEditingController passwordTextEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return CreditialWidget(
@@ -33,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const LogoWithNameWidget(),
             const Spacer(),
             CustomText(
-                name: ConstString.signIn,
+                name: ConstString.forgotPassword,
                 color: AppColors.whiteColor,
                 fontSize: 24,
                 fontWeight: FontWeight.w600),
@@ -57,19 +54,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   AppSizedBox.h20,
-                  CustomTextField(
-                    controller: passwordTextEditingController,
-                    hintText: "Enter Password",
-                    prefixIcon: Icon(
-                      Icons.lock,
-                      color: AppColors.blackColor,
-                    ),
-                  ),
                   const Spacer(),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
-                          context, createRoute(const GenerateOTPScreeen()));
+                          context, createRoute(const VerifyOTPScreen()));
                     },
                     child: Material(
                       clipBehavior: Clip.antiAlias,
@@ -86,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: screenWidth * 0.50,
                         color: AppColors.secondaryColor,
                         child: CustomText(
-                            name: ConstString.signIn,
+                            name: ConstString.generateOTP,
                             color: AppColors.whiteColor,
                             fontSize: 14,
                             fontWeight: FontWeight.bold),
@@ -94,9 +83,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                       child: CustomText(
-                          name: ConstString.forgotPassword,
+                          name: ConstString.cancel,
                           color: AppColors.secondaryColor,
                           fontSize: 14,
                           fontWeight: FontWeight.bold)),

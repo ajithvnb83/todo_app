@@ -1,25 +1,21 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:todo/core/utils/app_sizedbox.dart';
 import 'package:todo/core/utils/common_import.dart';
 import 'package:todo/core/widgets/credentials.dart';
-import 'package:todo/core/widgets/custom_text_widget.dart';
 import 'package:todo/core/widgets/custom_textfield.dart';
 import 'package:todo/core/widgets/logo_with_name.dart';
+import 'package:todo/features/login_screen/presentation/pages/login_screen.dart';
 
-import '../../../../core/utils/navigations.dart';
-import '../../../fogot_password_screen/presentation/pages/generate_otp_screen.dart';
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailTextEditingController = TextEditingController();
-  TextEditingController passwordTextEditingController = TextEditingController();
+class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+  TextEditingController newPasswordTextEditingController =
+      TextEditingController();
+  TextEditingController confirmPasswordTextEditingController =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     return CreditialWidget(
@@ -49,17 +45,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   AppSizedBox.h40,
                   CustomTextField(
-                    controller: emailTextEditingController,
-                    hintText: "Enter Email",
+                    controller: newPasswordTextEditingController,
+                    hintText: ConstString.enterNewfirmPassword,
                     prefixIcon: Icon(
-                      Icons.email_outlined,
+                      Icons.lock,
                       color: AppColors.blackColor,
                     ),
                   ),
                   AppSizedBox.h20,
                   CustomTextField(
-                    controller: passwordTextEditingController,
-                    hintText: "Enter Password",
+                    controller: confirmPasswordTextEditingController,
+                    hintText: ConstString.enterConfirmPassword,
                     prefixIcon: Icon(
                       Icons.lock,
                       color: AppColors.blackColor,
@@ -68,8 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Spacer(),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context, createRoute(const GenerateOTPScreeen()));
+                      Navigator.push(context, createRoute(const LoginScreen()));
                     },
                     child: Material(
                       clipBehavior: Clip.antiAlias,

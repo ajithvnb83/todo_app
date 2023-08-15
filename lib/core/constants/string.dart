@@ -14,4 +14,6 @@ class ConstString {
   static String cancel = "Cancel";
   static String submit = "Submit";
   static String generateOTP = "Generate OTP";
+  static String enterConfirmPassword = "Enter Confirm Password";
+  static String enterNewfirmPassword = "Enter New Password";
 }

@@ -17,9 +17,24 @@ class _CreditialWidgetState extends State<CreditialWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.whiteColor,
       body: Stack(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: screenHeight,
+                width: screenWidth / 2,
+                color: AppColors.whiteColor,
+              ),
+              Container(
+                height: screenHeight,
+                width: screenWidth / 2,
+                color: AppColors.primaryColor,
+              ),
+            ],
+          ),
           Positioned(
             top: 0,
             child: Container(
@@ -27,7 +42,6 @@ class _CreditialWidgetState extends State<CreditialWidget> {
               width: screenWidth,
               decoration: BoxDecoration(
                 color: AppColors.primaryColor,
-                border: Border.all(color: AppColors.primaryColor),
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(55),
                 ),
