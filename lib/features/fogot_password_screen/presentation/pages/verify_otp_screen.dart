@@ -85,7 +85,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
-                          context, createRoute(ChangePasswordScreen()));
+                          context, createRoute(const ChangePasswordScreen()));
                     },
                     child: Material(
                       clipBehavior: Clip.antiAlias,

@@ -1,6 +1,4 @@
-import 'package:todo/core/utils/app_sizedbox.dart';
 import 'package:todo/core/utils/common_import.dart';
-import 'package:todo/core/widgets/custom_text_widget.dart';
 
 class LogoWithNameWidget extends StatelessWidget {
   const LogoWithNameWidget({super.key});

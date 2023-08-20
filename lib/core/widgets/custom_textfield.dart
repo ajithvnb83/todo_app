@@ -1,30 +1,4 @@
-import 'package:flutter/services.dart';
 import 'package:todo/core/utils/common_import.dart';
-
-// class CustomTextField extends StatefulWidget {
-//   final TextEditingController controller;
-//   final bool readOnly;
-//   final int maxLength;
-//   final TextInputFormatter textInputFormatter;
-//   const CustomTextField(
-//       {super.key,
-//       this.readOnly = false,
-//       required this.controller,
-//       this.maxLength = 10,
-//       required this.textInputFormatter});
-
-//   @override
-//   State<CustomTextField> createState() => _CustomTextFieldState();
-// }
-
-// class _CustomTextFieldState extends State<CustomTextField> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextFormField(
-//       controller: widget.controller,
-//     );
-//   }
-// }
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;

@@ -1,9 +1,6 @@
-import 'package:todo/core/utils/app_sizedbox.dart';
 import 'package:todo/core/utils/common_import.dart';
-import 'package:todo/core/utils/navigations.dart';
 
 import 'package:todo/core/widgets/credentials.dart';
-import 'package:todo/core/widgets/custom_text_widget.dart';
 import 'package:todo/core/widgets/custom_textfield.dart';
 import 'package:todo/core/widgets/logo_with_name.dart';
 import 'package:todo/features/fogot_password_screen/presentation/pages/verify_otp_screen.dart';
