@@ -2,23 +2,26 @@ import 'package:todo/core/utils/common_import.dart';
 import 'package:todo/core/widgets/credentials.dart';
 import 'package:todo/core/widgets/custom_textfield.dart';
 import 'package:todo/core/widgets/logo_with_name.dart';
-import 'package:todo/features/login_screen/presentation/cubit/login_screen_cubit.dart';
+import 'package:todo/features/signup_screen/presentation/cubit/signup_screen_cubit.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
+  TextEditingController displayNameTextEditingController =
+      TextEditingController();
 
   @override
   void dispose() {
     emailTextEditingController.dispose();
     passwordTextEditingController.dispose();
+    displayNameTextEditingController.dispose();
     super.dispose();
   }
 
@@ -47,19 +50,30 @@ class _LoginScreenState extends State<LoginScreen> {
           child: SingleChildScrollView(
             child: SizedBox(
               height: screenHeight / 2,
-              child: BlocConsumer<LoginScreenCubit, LoginScreenState>(
+              child: BlocConsumer<SignupScreenCubit, SignupScreenState>(
                   listener: (context, state) {
-                if (state is LoginScreenSuccessState) {
+                if (state is SignupScreenSuccessState) {
                   emailTextEditingController.clear();
                   passwordTextEditingController.clear();
+                  displayNameTextEditingController.clear();
                   CommonToast().commonToast(message: "Successfully Registered");
-                } else if (state is LoginScreenErrorState) {
-                  CommonToast().commonToast(message: state.message);
+                } else if (state is SignupScreenErrorState) {
+                  CommonToast()
+                      .commonToast(message: state.failureWithMessage.message);
                 }
               }, builder: (context, state) {
                 return Column(
                   children: [
                     AppSizedBox.h40,
+                    CustomTextField(
+                      controller: displayNameTextEditingController,
+                      hintText: "Enter Display Name",
+                      prefixIcon: Icon(
+                        Icons.email_outlined,
+                        color: AppColors.blackColor,
+                      ),
+                    ),
+                    AppSizedBox.h20,
                     CustomTextField(
                       controller: emailTextEditingController,
                       hintText: "Enter Email",

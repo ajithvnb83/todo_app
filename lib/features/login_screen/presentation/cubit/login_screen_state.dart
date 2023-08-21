@@ -7,4 +7,20 @@ abstract class LoginScreenState extends Equatable {
   List<Object> get props => [];
 }
 
-class LoginScreenInitial extends LoginScreenState {}
+class LoginScreenInitialState extends LoginScreenState {}
+
+class LoginScreenLoadingState extends LoginScreenState {}
+
+class LoginScreenSuccessState extends LoginScreenState {
+  final String isSuccess;
+  const LoginScreenSuccessState({
+    required this.isSuccess,
+  });
+}
+
+class LoginScreenErrorState extends LoginScreenState {
+  final String message;
+  const LoginScreenErrorState({
+    required this.message,
+  });
+}
